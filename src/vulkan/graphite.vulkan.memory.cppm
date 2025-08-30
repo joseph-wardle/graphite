@@ -1,0 +1,1 @@
+export module graphite.vulkan:memory;
