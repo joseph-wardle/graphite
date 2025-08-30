@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # CMake >= 3.30 (lightweight install via pip)
+      - name: Install CMake 3.30
+        run: |
+          python3 -m pip install --upgrade --user pip
+          python3 -m pip install --user "cmake==3.30.3"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          cmake --version
+
+      # Toolchain + minimal deps
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build xorg-dev wget
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 21
+          clang-21 --version
+          clang++-21 --version
+
+      - name: Configure
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_C_COMPILER=clang-21 \
+            -DCMAKE_CXX_COMPILER=clang++-21 \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_CXX_SCAN_FOR_MODULES=ON \
+            -DGRAPHITE_GLFW=ON \
+            -DGRAPHITE_VULKAN=ON \
+            -DGLFW_BUILD_WAYLAND=OFF \
+            -DGLFW_BUILD_X11=ON
+
+      - name: Build
+        run: cmake --build build --parallel

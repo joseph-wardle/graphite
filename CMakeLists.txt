@@ -6,5 +6,6 @@ set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(cmake/CPM.cmake)
+include(cmake/warnings.cmake)
 
 add_subdirectory(src)

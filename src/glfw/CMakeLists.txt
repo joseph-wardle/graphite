@@ -26,3 +26,4 @@ target_sources(graphite_glfw
 
 target_link_libraries(graphite_glfw PUBLIC carbon PRIVATE glfw)
 target_compile_features(graphite_glfw PUBLIC cxx_std_23)
+graphite_strict_warnings(graphite_glfw)
