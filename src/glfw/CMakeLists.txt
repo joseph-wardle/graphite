@@ -17,11 +17,15 @@ target_sources(graphite_glfw
         FILE_SET cxx_modules TYPE CXX_MODULES
         FILES
             graphite.glfw.cppm
+            graphite.glfw.core.cppm
+            graphite.glfw.create.cppm
+            graphite.glfw.error.cppm
+            graphite.glfw.events.cppm
+            graphite.glfw.types.cppm
             graphite.glfw.window.cppm
-            graphite.glfw.input.cppm
     PRIVATE
+        graphite.glfw.core.cpp
         graphite.glfw.window.cpp
-        graphite.glfw.input.cpp
 )
 
 target_link_libraries(graphite_glfw PUBLIC carbon PRIVATE glfw)
