@@ -5,7 +5,7 @@ module graphite.glfw;
 import :window;
 
 import carbon.types;
-import carbon.string_view;
+import carbon.string;
 import carbon.result;
 import carbon.math;
 import :create;

@@ -5,7 +5,7 @@ import :events;
 import :types;
 
 import carbon.result;
-import carbon.string_view;
+import carbon.string;
 import carbon.types;
 
 using carbon::Result;

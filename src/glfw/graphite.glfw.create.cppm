@@ -1,7 +1,7 @@
 export module graphite.glfw:create;
 
 import carbon.option;
-import carbon.string_view;
+import carbon.string;
 import carbon.types;
 
 import :types;
